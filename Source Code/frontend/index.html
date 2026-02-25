@@ -1,36 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Job Offer Decision Companion</title>
-    <link rel="stylesheet" href="style.css">
+<title>Decision Companion</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Job Offer Decision Companion</h1>
+<h1>Decision Companion System</h1>
 
-<h2>Add Job Offers</h2>
+<h2>Step 1: Define Decision Factors (in order of importance)</h2>
+<input id="factorInput" placeholder="Enter Factor (eg: Salary)">
+<button onclick="addFactor()">Add Factor</button>
+
+<ul id="factorList"></ul>
+
+<hr>
+
+<h2>Step 2: Add Job</h2>
 
 <input id="company" placeholder="Company Name">
-<input id="salary" placeholder="Salary (1-10)">
-<input id="growth" placeholder="Growth (1-10)">
-<input id="worklife" placeholder="Work-Life (1-10)">
-<input id="location" placeholder="Location (1-10)">
-<input id="stability" placeholder="Stability (1-10)">
+
+<div id="ratings"></div>
+
 <button onclick="addJob()">Add Job</button>
 
-<h2>Set Your Priorities</h2>
+<hr>
 
-<input id="wsalary" placeholder="Salary Importance">
-<input id="wgrowth" placeholder="Growth Importance">
-<input id="wworklife" placeholder="Work-Life Importance">
-<input id="wlocation" placeholder="Location Importance">
-<input id="wstability" placeholder="Stability Importance">
+<h2>Decision Matrix</h2>
+<table border="1" id="matrix"></table>
 
-<br><br>
-<button onclick="evaluate()">Evaluate</button>
+<hr>
+
+<button onclick="evaluateJobs()">Evaluate Best Job</button>
 
 <h2>Results</h2>
-<ul id="results"></ul>
+<ol id="results"></ol>
 
 <script src="script.js"></script>
 </body>

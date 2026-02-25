@@ -6,29 +6,37 @@ CORS(app)
 
 @app.route('/evaluate', methods=['POST'])
 def evaluate():
+
     data = request.json
-    
-    jobs = data['jobs']
-    weights = data['weights']
-    
+    jobs = data["jobs"]
+    factors = data["factors"]
+
+    weights = {}
+
+    # Auto-generate weights based on priority order
+    total = len(factors)
+    for i, factor in enumerate(factors):
+        weights[factor] = total - i
+
     results = []
 
     for job in jobs:
-        score = (
-            job['salary'] * weights['salary'] +
-            job['growth'] * weights['growth'] +
-            job['work_life'] * weights['work_life'] +
-            job['location'] * weights['location'] +
-            job['stability'] * weights['stability']
-        )
+
+        score = 0
+        for factor in factors:
+            score += job["ratings"][factor] * weights[factor]
+
         results.append({
-            "company": job['company'],
+            "company": job["company"],
             "score": score
         })
 
-    results.sort(key=lambda x: x['score'], reverse=True)
+    results.sort(key=lambda x: x["score"], reverse=True)
 
-    return jsonify(results)
+    return jsonify({
+        "weights": weights,
+        "results": results
+    })
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
