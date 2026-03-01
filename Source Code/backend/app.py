@@ -32,10 +32,12 @@ def evaluate():
         })
 
     results.sort(key=lambda x: x["score"], reverse=True)
+    best_job = results[0]["company"]
 
     return jsonify({
         "weights": weights,
-        "results": results
+        "results": results,
+        "best_job": best_job
     })
 
 if __name__ == "__main__":

@@ -5,15 +5,22 @@ function addFactor(){
 
     let input = document.getElementById("factorInput");
     let factor = input.value.trim();
+    let error = document.getElementById("factorError");
+
+    error.innerText = "";
 
     if(!factor) return;
+
+    if(factors.includes(factor)){
+        error.innerText = "Factor already added.";
+        return;
+    }
 
     factors.push(factor);
 
     updateFactorList();
     renderInputs();
 
-    // Reset field
     input.value = "";
 }
 
@@ -52,8 +59,10 @@ function renderInputs(){
         input.placeholder = f + " (1-10)";
         input.id = f;
         input.type = "number";
+        input.classList.add("job-input");
         input.min = 1;
         input.max = 10;
+        input.classList.add("job-input");
         div.appendChild(input);
     });
 }
@@ -62,19 +71,29 @@ function addJob(){
 
     let companyInput = document.getElementById("company");
     let company = companyInput.value.trim();
+    let error = document.getElementById("ratingError");
+
+    error.innerText = "";
 
     if(!company) return;
 
     let ratings = {};
 
-    factors.forEach(f => {
-        ratings[f] = Number(document.getElementById(f).value);
-    });
+    for(let f of factors){
+
+        let value = Number(document.getElementById(f).value);
+
+        if(value < 1 || value > 10 || isNaN(value)){
+            error.innerText = "All ratings must be between 1 and 10.";
+            return;
+        }
+
+        ratings[f] = value;
+    }
 
     jobs.push({company, ratings});
     updateMatrix();
 
-    // Reset fields
     companyInput.value = "";
     factors.forEach(f=>{
         document.getElementById(f).value="";
@@ -121,6 +140,11 @@ function updateMatrix(){
 
 function evaluateJobs(){
 
+    if(jobs.length === 0 || factors.length === 0){
+    alert("Please add factors and at least one job before evaluating.");
+    return;
+}
+
     fetch("http://127.0.0.1:5000/evaluate",{
         method:"POST",
         headers:{"Content-Type":"application/json"},
@@ -138,17 +162,30 @@ function evaluateJobs(){
             results.appendChild(li);
         });
 
-        // FINAL RECOMMENDATION
-        let bestJob = data.results[0];
+        let bestJob = data.best_job;
 
-        let explanation = document.getElementById("recommendation");
+// Find top priority factor (first entered factor)
+let topFactor = factors[0];
 
-        explanation.innerText =
-            bestJob.company +
-            " is the best option because it performs strongly in your highest priority factors.";
-    });
+let summary = bestJob + " is the most suitable job based on your priorities. ";
+summary += "It achieved the highest weighted score, especially performing well in your top priority factor: ";
+summary += topFactor + ".";
+
+document.getElementById("recommendation").innerText = summary;
+});
+
+      
 }
 
 function editCell(jobIndex, factor, value){
-    jobs[jobIndex].ratings[factor] = Number(value);
+
+    value = Number(value);
+
+    if(value < 1 || value > 10 || isNaN(value)){
+        alert("Ratings must be between 1 and 10.");
+        updateMatrix();
+        return;
+    }
+
+    jobs[jobIndex].ratings[factor] = value;
 }
