@@ -178,6 +178,10 @@ The system uses:
 
 ### What would I improve with more time.
 
+I would make the system to make decisions for multiple problems.
+eventually making it a Decision Companion System for almost every problems we see.
+even now we can check for different problems and its solutions. But we cannot expect that the output is right or not. The Mathematical equations and algorithms are purely based for Job Offer Evaluator. I might find an algorithm aswell as the equations that satisfies for all such problems will be formulated.
+
 I would add a Dynamic Factor System.
 Factors no longer hold permanent weight or priority.
 They respond to:
