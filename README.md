@@ -95,6 +95,14 @@ For all these respective error messages will be given indicating
 ---
 
 ## How to Run the Project
+## Deployed
+open the link : https://decisioncompanionsystemweb.onrender.com/
+
+This will redirect to the web app created. I created a new repository to deploy my website. All the contents used to create the web app is same as in the submitted repository. I am also including the repository which i have used for deploying my website. I have used "Render (https://render.com/)" for deploying this. A new repository is made only to formulate or to structure the way in which "Render" demands the files to be. And all the code contents remains the same.
+
+newly made repository link : https://github.com/adarshkb/DecisionCompanionSystemWeb-
+
+## Typical File Access Method
 
 git clone https://github.com/adarshkb/Decision-Companion-System
 cd Decision-Companion-System
