@@ -2,7 +2,7 @@
 
 ## Understanding of the Problem
 
-Upon reading and analyzing the task, and even asking to chatgpt and various ai tools I received many ecision Companion Systems that can be made. Then I thought of some problems that I face currently. Or some problems that I expect some ecision Companion Systems could have existed.
+Upon reading and analyzing the task, and even asking to chatgpt and various ai tools I received many Decision Companion Systems that can be made. Then I thought of some problems that I face currently. Or some problems that I expect some Decision Companion Systems could have existed.
 
 Choosing between multiple job offers is a complex real-world decision involving multiple competing criteria such as salary, stability, location, growth opportunities, work-life balance etc.
 This is such a kind of problem students or young professionals face during their carrer starting phase. Which releates to me a lot now rather than any other.
