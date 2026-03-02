@@ -26,6 +26,8 @@ And arrrived on an equation.
 
 ## Score=∑(Rating×Priority)
 
+Score_{Job} = \sum_{i=1}^{n} (Rating_{i} \times Weight_{i})
+
 
 ## Refactoring Decisions
 
